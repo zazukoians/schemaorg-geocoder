@@ -1,0 +1,19 @@
+{
+  "name": "p3-geocoder",
+  "version": "0.1.0",
+  "description": "REST wrapper for geocoder API for use as Fusepool P3 transformer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Gschwend",
+  "license": "MIT",
+  "dependencies": {
+    "clownface": "^0.3.0-rc6",
+    "node-geocoder": "^3.5.1",
+    "rdf-ext": "^0.3.0-rc6",
+    "rdf-formats-common": "^0.3.0-rc5",
+    "rdf-parser-n3": "^0.3.0-rc1",
+    "restify": "^4.0.3"
+  }
+}
