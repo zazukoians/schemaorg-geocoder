@@ -13,14 +13,10 @@ var extra = {
     formatter: null         // 'gpx', 'string', ...
 };
 
-console.log(httpAdapter+" "+apiKey+" "+geocoderProvider);
-
-
 // requires
 
 var restify = require('restify');
 var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra);
-var bodyParser = require('body-parser');
 var rdf = require('rdf-ext');
 var formats = require('rdf-formats-common')();
 var clownface = require('clownface');
@@ -31,14 +27,51 @@ var rdfFormats = require('rdf-formats-common')();
 //  curl -X POST -H "Content-type: text/turtle" --data-binary "@localbusiness.ttl"
 
 
-function respond(req, res, next) {
-    res.send('hello ' + req.params.name);
-    next();
+function geocoderAccept(req, res, next) {
+
+
+    var subject = 'http://example.org/subject';
+
+    var metagraph = rdf.createGraph([rdf.createTriple(
+        rdf.createNamedNode(subject),
+        rdf.createNamedNode('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+        rdf.createNamedNode('http://vocab.fusepool.info/transformer#Transformer'))]);
+
+    metagraph.add(rdf.createTriple(
+        rdf.createNamedNode(subject),
+        rdf.createNamedNode('http://purl.org/dc/terms/title'),
+        rdf.createLiteral('Fusepool P3 schema.org geocoder', 'en')));
+
+    metagraph.add(rdf.createTriple(
+        rdf.createNamedNode(subject),
+        rdf.createNamedNode('http://purl.org/dc/terms/description'),
+        rdf.createLiteral('Adds geolocations (lat/long) to RDF containing schema.org addresses', 'en')));
+
+    var parsers = rdfFormats.parsers.list();
+    var serializers = rdfFormats.serializers.list();
+
+
+    Object.keys(parsers).forEach(function (key) {
+        metagraph.add(rdf.createTriple(
+            rdf.createNamedNode(subject),
+            rdf.createNamedNode('http://vocab.fusepool.info/transformer#supportedInputFormat'),
+            rdf.createLiteral(parsers[key])));
+    });
+
+    Object.keys(serializers).forEach(function (key) {
+        metagraph.add(rdf.createTriple(
+            rdf.createNamedNode(subject),
+            rdf.createNamedNode('http://vocab.fusepool.info/transformer#supportedOutputFormat'),
+            rdf.createLiteral(serializers[key])));
+    });
+
+
+    res.sendGraph(metagraph);
+    return next();
+
 }
 
 function geocoderLookup(req, res, next) {
-    console.log("Got called it seems\n");
-    //console.log(req.body);
 
     if (req.graph) {
 
@@ -62,20 +95,17 @@ function geocoderLookup(req, res, next) {
 
         });
 
-        console.log(JSON.stringify(addresses));
         geocoder.batchGeocode(addresses)
             .then(function(res) {
-                console.log("Im in the then");
-                console.log(JSON.stringify(res));
 
                 var i = 0;
                 res.forEach(function(geoaddress){
 
-                    console.log(geoaddress.value[0].latitude+", "+geoaddress.value[0].longitude+", "+geoaddress.value[0].city+"\n");
+                    //console.log(geoaddress.value[0].latitude+", "+geoaddress.value[0].longitude+", "+geoaddress.value[0].city+"\n");
                     //    console.log(JSON.stringify(address));
                     //    console.log(address.value[0].latitude);
 
-                    console.log("in: "+cf.node(nodes[i]).in('http://schema.org/address').literal().shift());
+                    //console.log("in: "+cf.node(nodes[i]).in('http://schema.org/address').literal().shift());
 
 
                     var subject = rdf.createNamedNode(cf.node(nodes[i]).in('http://schema.org/address').literal().shift());
@@ -89,9 +119,6 @@ function geocoderLookup(req, res, next) {
 
                     var ogeolat = rdf.createLiteral(geoaddress.value[0].latitude, null, 'http://www.w3.org/2001/XMLSchema#float');
                     var ogeolong = rdf.createLiteral(geoaddress.value[0].longitude, null, 'http://www.w3.org/2001/XMLSchema#float');
-
-
-                    console.log("bla: "+JSON.stringify(ogeolat));
 
 
                     var tlat = rdf.createTriple(bnode, pgeolat, ogeolat);
@@ -111,7 +138,6 @@ function geocoderLookup(req, res, next) {
                     i++;
 
                 });
-                console.log(responsegraph.toString());
 
             })
             .then(function(){
@@ -135,7 +161,7 @@ server.use(rdfBodyParser(rdfFormats));
 
 
 server.post('/geocoder', geocoderLookup);
-server.head('/geocoder/:name', respond);
+server.get('/geocoder', geocoderAccept);
 
 
 server.listen(8080, function() {

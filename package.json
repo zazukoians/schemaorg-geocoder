@@ -9,11 +9,12 @@
   "author": "Adrian Gschwend",
   "license": "MIT",
   "dependencies": {
-    "clownface": "^0.3.0-rc6",
+    "clownface": "^0.3.0",
     "node-geocoder": "^3.5.1",
-    "rdf-ext": "^0.3.0-rc6",
-    "rdf-formats-common": "^0.3.0-rc5",
-    "rdf-parser-n3": "^0.3.0-rc1",
+    "rdf-body-parser": "^0.3.0",
+    "rdf-ext": "^0.3.0",
+    "rdf-formats-common": "^0.3.0",
+    "rdf-parser-n3": "^0.3.0",
     "restify": "^4.0.3"
   }
 }
