@@ -1,0 +1,106 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix parent: <http://playground.fusepool.info:8181/ldp/dcr/default-configuration/Historical-Shops-Trentino/> .
+@prefix child: <http://playground.fusepool.info:8181/ldp/dcr/default-configuration/Historical-Shops-Trentino/bla-csv-csv-transformed/> .
+@prefix this: <http://playground.fusepool.info:8181/ldp/dcr/default-configuration/Historical-Shops-Trentino/bla-csv-csv-transformed#> .
+
+<http://lod.dati.trentino.it/hstn/114>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Pergine Valsugana"^^xsd:string ;
+        <http://schema.org/postalCode> "38057"^^xsd:string ;
+        <http://schema.org/streetAddress> "Via Chimelli 18"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "A.B. INTIMO DI BRUNELLI SILVANA E EVANGELISTI LUIGINO S.N.C."^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/142>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Mori"^^xsd:string ;
+        <http://schema.org/postalCode> "38065"^^xsd:string ;
+        <http://schema.org/streetAddress> "Piazza Cal Di Ponte 15"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ABBIGLIAMENTO MAGANOTTI MARIA GRAZIA"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/301>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Borgo Valsugana"^^xsd:string ;
+        <http://schema.org/postalCode> "38051"^^xsd:string ;
+        <http://schema.org/streetAddress> "Corso Ausugum 32"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "AGOSTINI"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/372>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Mezzolombardo"^^xsd:string ;
+        <http://schema.org/postalCode> "38017"^^xsd:string ;
+        <http://schema.org/streetAddress> "Via De Gasperi 2"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ABBIGLIAMENTO MAURINA"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/567>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Castello Tesino"^^xsd:string ;
+        <http://schema.org/postalCode> "38053"^^xsd:string ;
+        <http://schema.org/streetAddress> "Piazza Marconi 1"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ABBIGLIAMENTO BAILO"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/634>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Caldonazzo"^^xsd:string ;
+        <http://schema.org/postalCode> "38052"^^xsd:string ;
+        <http://schema.org/streetAddress> "Piazza Municipio  2"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ALBERGO RISTORANTE BAR DUE SPADE"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/635>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Caldonazzo"^^xsd:string ;
+        <http://schema.org/postalCode> "38052"^^xsd:string ;
+        <http://schema.org/streetAddress> "Via delle Villa 37"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ALBERGO RISTORANTE BAR ALLA TORRE"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/646>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Folgaria"^^xsd:string ;
+        <http://schema.org/postalCode> "38064"^^xsd:string ;
+        <http://schema.org/streetAddress> "Via Strada Nuova  8"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ALBERGO BAR RISTORANTE ROSALPINA DI CANALIA GABRIELE"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+<http://lod.dati.trentino.it/hstn/647>
+    <http://schema.org/address> [
+        <http://schema.org/addressLocality> "Folgaria"^^xsd:string ;
+        <http://schema.org/postalCode> "38064"^^xsd:string ;
+        <http://schema.org/streetAddress> "Via A. Maffei 52"^^xsd:string ;
+        a <http://schema.org/PostalAddress>
+    ] ;
+    <http://schema.org/legalName> "ALBERGO BAR RISTORANTE SAYONARA DI RECH WILLIAM"^^xsd:string ;
+    a <http://schema.org/LocalBusiness> .
+
+parent:bla-csv-csv-transformed
+    dcterms:created "2015-12-22T14:32:15.000Z"^^xsd:dateTime ;
+    dcterms:modified "2015-12-22T14:32:15.000Z"^^xsd:dateTime ;
+    <http://vocab.fusepool.info/eldp#transformedFrom> <http://playground.fusepool.info:8181/ldp/dcr/default-configuration/Historical-Shops-Trentino/bla-csv.csv> ;
+    a ldp:BasicContainer, ldp:Container, ldp:RDFSource, ldp:Resource ;
+    ldp:interactionModel ldp:Container .
+

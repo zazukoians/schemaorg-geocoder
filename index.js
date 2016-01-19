@@ -5,7 +5,7 @@
 
 var httpAdapter = process.env.GEOCODER_HTTPADAPTER || 'http';
 var apiKey = process.env.GEOCODER_APIKEY || '';
-var geocoderProvider = process.env.GEOCODER_PROVIDER || 'openstreetmap';
+var geocoderProvider = process.env.GEOCODER_PROVIDER || 'freegeoip';
 
 // optional
 var extra = {
