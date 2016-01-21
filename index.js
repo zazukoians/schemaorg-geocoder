@@ -22,6 +22,11 @@ var formats = require('rdf-formats-common')();
 var clownface = require('clownface');
 var rdfBodyParser = require('rdf-body-parser');
 var rdfFormats = require('rdf-formats-common')();
+var absoluteUrl = require('ldapp-absolute-url');
+
+
+
+
 
 
 //  curl -X POST -H "Content-type: text/turtle" --data-binary "@localbusiness.ttl"
@@ -29,7 +34,14 @@ var rdfFormats = require('rdf-formats-common')();
 
 function geocoderAccept(req, res, next) {
 
+/*    try {
+        console.log("URI: "+req.absoluteUrl());
 
+    } catch (e ){
+        console.log(e.stack || e.message);
+    }*/
+
+    // TODO this is not the correct URI yet, we need to fix ldapp-absolute-url to work outside express
     var subject = 'http://example.org/subject';
 
     var metagraph = rdf.createGraph([rdf.createTriple(
@@ -158,6 +170,7 @@ function geocoderLookup(req, res, next) {
 var server = restify.createServer();
 
 server.use(rdfBodyParser(rdfFormats));
+server.use(absoluteUrl.init());
 
 
 server.post('/geocoder', geocoderLookup);
