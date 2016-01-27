@@ -156,7 +156,7 @@ function geocoderLookup(req, res, next) {
                 res.sendGraph(responsegraph);
             })
             .catch(function(err) {
-                console.log(err);
+                console.log(err.stack || err.message);
             });
 
 
